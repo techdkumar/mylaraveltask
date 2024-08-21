@@ -17,12 +17,7 @@ class TaskController extends Controller
     // Store a new task
     public function store(Request $request)
     {
-        // Validate the task name
-       /*  $request->validate([
-            'name' => 'required|unique:tasks,name|max:255',
-        ]); */
-		
-		
+       	
 		$request->validate([
 			'name' => 'required|unique:tasks,name|max:255',
 		], [
@@ -41,25 +36,10 @@ class TaskController extends Controller
         return response()->json($task);
     }
 
-    // Update task completion status
-   /*  public function update(Request $request, $id)
-    {
-        // Find the task by ID
-        $task = Task::findOrFail($id);
-        
-        // Update the completion status
-        $task->is_completed = $request->is_completed;
-        $task->save();
-
-        return response()->json(['message' => 'Task updated successfully']);
-    } */
-	
-	
-	
+ 	
 	
 	public function update(Request $request, Task $task)
 {
-    // Validate that is_completed is either true or false
     $request->validate(['is_completed' => 'required|boolean']);
     
     // Update the task's completion status
